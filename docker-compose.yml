@@ -23,6 +23,7 @@ services:
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
             - /proc:/hostfs/proc
+            - ~/roomdata:/usr/lib/jitsi
         privileged: true
         restart: always
         env_file:

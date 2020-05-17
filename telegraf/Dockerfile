@@ -8,7 +8,7 @@ USER root
 
 ADD telegraf.template.conf /telegraf.template.conf
 
-RUN apt-get update && apt-get -y install build-essential hddtemp
+RUN apt-get update && apt-get -y install build-essential hddtemp apt-utils
 
 ADD run.sh /run.sh
 

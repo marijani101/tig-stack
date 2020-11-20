@@ -1,10 +1,13 @@
-FROM grafana/grafana:5.4.3
+FROM grafana/grafana:7.3.0-ubuntu
+# docker pull grafana/grafana:7.3.1
 
-LABEL author="Alexis Le Provost <alexis.leprovost@outlook.com>"
-LABEL version="1.0.0"
-LABEL description="Grafana docker image"
+LABEL author="Marijani Hussein Karanda <marijani.karanda@eganet.go.tz>"
+LABEL version="latest"
+LABEL description="Grafana docker image for mikutano"
 
 USER root
+
+RUN echo "kwioo"
 
 RUN apt-get -q update &&\
     DEBIAN_FRONTEND="noninteractive" apt-get -q upgrade -y -o Dpkg::Options::="--force-confnew" --no-install-recommends &&\

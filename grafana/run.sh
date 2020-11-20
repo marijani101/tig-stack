@@ -5,12 +5,16 @@
 : "${GF_PATHS_PLUGINS:=/var/lib/grafana/plugins}"
 : "${GF_PATHS_PROVISIONING:=/etc/grafana/provisioning}"
 
-chown -R grafana:grafana "$GF_PATHS_DATA" "$GF_PATHS_LOGS"
-chown -R grafana:grafana /etc/grafana
+# chown -R grafana:grafana "$GF_PATHS_DATA" "$GF_PATHS_LOGS"
+# chown -R grafana:grafana /etc/grafana
 
 # Install all available plugins
 if [ "${GRAFANA_PLUGINS_ENABLED}" != "false" ]
 then
+
+grafana-cli plugins install agenty-flowcharting-panel
+grafana-cli plugins install jdbranham-diagram-panel
+
   if [ -z "${GRAFANA_PLUGINS}" ]
   then
     GRAFANA_PLUGINS=`grafana-cli plugins list-remote | awk '{print $2}'| grep "-"`
@@ -25,6 +29,10 @@ then
     fi
   done
 fi
+
+
+
+
 
 # Start grafana with gosu
 exec gosu grafana /usr/share/grafana/bin/grafana-server  \

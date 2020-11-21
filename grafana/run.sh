@@ -9,26 +9,26 @@
 # chown -R grafana:grafana /etc/grafana
 
 # Install all available plugins
-if [ "${GRAFANA_PLUGINS_ENABLED}" != "false" ]
-then
+# if [ "${GRAFANA_PLUGINS_ENABLED}" != "false" ]
+# then
 
-grafana-cli plugins install agenty-flowcharting-panel
-grafana-cli plugins install jdbranham-diagram-panel
+# grafana-cli plugins install agenty-flowcharting-panel
+# grafana-cli plugins install jdbranham-diagram-panel
 
-  if [ -z "${GRAFANA_PLUGINS}" ]
-  then
-    GRAFANA_PLUGINS=`grafana-cli plugins list-remote | awk '{print $2}'| grep "-"`
-  fi
-  for plugin in ${GRAFANA_PLUGINS}; 
-  do
-    if [ ! -d ${GF_PATHS_PLUGINS}/$plugin ]
-    then
-      grafana-cli plugins install $plugin || true;
-    else
-      echo "Plugin $plugin already installed"
-    fi
-  done
-fi
+#   if [ -z "${GRAFANA_PLUGINS}" ]
+#   then
+#     GRAFANA_PLUGINS=`grafana-cli plugins list-remote | awk '{print $2}'| grep "-"`
+#   fi
+#   for plugin in ${GRAFANA_PLUGINS}; 
+#   do
+#     if [ ! -d ${GF_PATHS_PLUGINS}/$plugin ]
+#     then
+#       grafana-cli plugins install $plugin || true;
+#     else
+#       echo "Plugin $plugin already installed"
+#     fi
+#   done
+# fi
 
 
 
@@ -92,6 +92,8 @@ then
     "password":"'"${INFLUXDB_ADMIN_PASSWORD}"'"}
   ' \
   http://${GRAFANA_USER}:${GRAFANA_PASSWORD}@${GRAFANA_URL}:${GRAFANA_PORT}/api/datasources
+
+
 else
   #Continue if it doesn't exists
   echo "Data Source '"${INFLUXDB_DATA_SOURCE}"' already exists."

@@ -1,4 +1,4 @@
-FROM grafana/grafana:7.3.0-ubuntu
+FROM grafana/grafana:7.3.1-ubuntu
 # docker pull grafana/grafana:7.3.1
 
 LABEL author="Marijani Hussein Karanda <marijani.karanda@eganet.go.tz>"

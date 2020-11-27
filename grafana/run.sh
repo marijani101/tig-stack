@@ -31,7 +31,8 @@
 # fi
 
 
-
+# mv /usr/share/grafana/public/views/index.html /usr/share/grafana/public/views/index-old.html
+# mv /usr/share/grafana/public/views/newindex.html /usr/share/grafana/public/views/index.html
 
 
 # Start grafana with gosu

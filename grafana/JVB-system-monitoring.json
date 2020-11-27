@@ -7,44 +7,17 @@
           "enable": true,
           "hide": true,
           "iconColor": "rgba(0, 211, 255, 1)",
-          "limit": 100,
           "name": "Annotations & Alerts",
-          "showIn": 0,
           "type": "dashboard"
         }
       ]
     },
+    "description": "Videoconferencing Performance Metrics",
     "editable": true,
-    "gnetId": null,
-    "graphTooltip": 0,
-    "id": 7,
-    "links": [
-      {
-        "asDropdown": false,
-        "icon": "external link",
-        "keepTime": true,
-        "tags": [],
-        "type": "dashboards"
-      },
-      {
-        "icon": "external link",
-        "tags": [],
-        "targetBlank": true,
-        "title": "e-Mikutano",
-        "tooltip": "Open e-Mikutano ",
-        "type": "link",
-        "url": "https://mikutano.gov.go.tz"
-      },
-      {
-        "icon": "external link",
-        "tags": [],
-        "targetBlank": true,
-        "title": "e-Maombi",
-        "tooltip": "Open e-Maombi Reservation System",
-        "type": "link",
-        "url": "https://maombi.mikutano.co.tz"
-      }
-    ],
+    "gnetId": 11969,
+    "graphTooltip": 2,
+    "id": 6,
+    "links": [],
     "panels": [
       {
         "collapsed": false,
@@ -55,87 +28,40 @@
           "x": 0,
           "y": 0
         },
-        "id": 52,
+        "id": 42,
         "panels": [],
-        "title": "e-Mikutano monitoring metrics",
+        "title": "Conference Overview",
         "type": "row"
       },
       {
-        "datasource": null,
+        "datasource": "Docker InfluxDB",
         "fieldConfig": {
           "defaults": {
-            "custom": {}
+            "custom": {},
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "orange",
+                  "value": 10
+                }
+              ]
+            }
           },
           "overrides": []
         },
         "gridPos": {
-          "h": 4,
-          "w": 24,
+          "h": 5,
+          "w": 3,
           "x": 0,
           "y": 1
         },
-        "id": 50,
-        "options": {
-          "content": "<div class=\"col-12  px-0\">\n\t\t<div class=\"col-md-10 offset-md-1 col-xs-12 col-sm-12 mb-2 mt-0 top-middle\">\n\t\t  <div class=\"row px-xs-2\">\n\t\t\t\t<div class=\"col-md-2 col-sm-2 col-xs-2 float-left text-left pt-1\">\n\t\t\t\t\t<a href=\"#\"><img src=\"https://www.ega.go.tz/site/images/emblem.png\" alt=\"emblem\" class=\"mx-auto img-fluid emblem\"></a>\n\t\t\t\t</div>\n\n\t\t\t\t<div class=\"col-md-8 col-sm-8 col-xs-8 text-center pt-3 pt-xs-0\">\n\t\t\t\t\t<h1 class=\"mb-0 title title-main\"> <br> Jamhuri ya Muungano wa Tanzania</h1>\n\t\t\t\t\t<h4 class=\"title-desc\"><b><i>Mfumo wa Mawasiliano kwa Njia ya Video</i></b></h4>\n\t\t\t\t</div>\n\n\t\t\t\t<div class=\"col-md-2 col-sm-2 col-xs-2 text-right client-logo pt-1 pr-0\"><img src=\"https://www.ega.go.tz/site/images/logo.png\" alt=\"eGA Logo\" class=\"img-fluid\"></div>\n\t\t\t\t</div>\n\t\t </div>\n\t</div>",
-          "mode": "html"
-        },
-        "pluginVersion": "7.3.1",
-        "targets": [
-          {
-            "queryType": "randomWalk",
-            "refId": "A"
-          }
-        ],
-        "timeFrom": null,
-        "timeShift": null,
-        "title": "",
-        "transparent": true,
-        "type": "text"
-      },
-      {
-        "collapsed": false,
-        "datasource": null,
-        "gridPos": {
-          "h": 1,
-          "w": 24,
-          "x": 0,
-          "y": 5
-        },
-        "id": 54,
-        "panels": [],
-        "title": "Current Values",
-        "type": "row"
-      },
-      {
-        "datasource": "Docker InfluxDB",
-        "description": "Number of participants currently in meetings",
-        "fieldConfig": {
-          "defaults": {
-            "custom": {},
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 3,
-          "w": 4,
-          "x": 0,
-          "y": 6
-        },
-        "id": 56,
+        "id": 2,
         "options": {
           "colorMode": "value",
           "graphMode": "area",
@@ -143,7 +69,7 @@
           "orientation": "auto",
           "reduceOptions": {
             "calcs": [
-              "last"
+              "lastNotNull"
             ],
             "fields": "",
             "values": false
@@ -162,7 +88,7 @@
               },
               {
                 "params": [
-                  "null"
+                  "0"
                 ],
                 "type": "fill"
               }
@@ -170,101 +96,6 @@
             "measurement": "mikutano_stats",
             "orderByTime": "ASC",
             "policy": "default",
-            "query": "SELECT last(\"participants\") FROM \"mikutano_stats\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
-            "queryType": "randomWalk",
-            "rawQuery": false,
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "participants"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "last"
-                }
-              ]
-            ],
-            "tags": []
-          }
-        ],
-        "timeFrom": null,
-        "timeShift": null,
-        "title": "Online Clients (e-Mikutano)",
-        "transparent": true,
-        "type": "stat"
-      },
-      {
-        "datasource": "Docker InfluxDB",
-        "description": "Number of conferences being held",
-        "fieldConfig": {
-          "defaults": {
-            "custom": {},
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 3,
-          "w": 4,
-          "x": 4,
-          "y": 6
-        },
-        "id": 57,
-        "options": {
-          "colorMode": "value",
-          "graphMode": "area",
-          "justifyMode": "auto",
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "last"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "textMode": "auto"
-        },
-        "pluginVersion": "7.3.1",
-        "targets": [
-          {
-            "groupBy": [
-              {
-                "params": [
-                  "1m"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "measurement": "mikutano_stats",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "query": "SELECT last(\"participants\") FROM \"mikutano_stats\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
-            "queryType": "randomWalk",
-            "rawQuery": false,
             "refId": "A",
             "resultFormat": "time_series",
             "select": [
@@ -286,13 +117,12 @@
         ],
         "timeFrom": null,
         "timeShift": null,
-        "title": "Running Conferences (e-Mikutano)",
-        "transparent": true,
+        "title": "Conferences running",
         "type": "stat"
       },
       {
         "datasource": "Docker InfluxDB",
-        "description": "Total number of reserved conferences to date",
+        "description": "",
         "fieldConfig": {
           "defaults": {
             "custom": {},
@@ -314,12 +144,12 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 3,
-          "w": 4,
-          "x": 8,
-          "y": 6
+          "h": 5,
+          "w": 3,
+          "x": 3,
+          "y": 1
         },
-        "id": 59,
+        "id": 5,
         "options": {
           "colorMode": "value",
           "graphMode": "area",
@@ -327,7 +157,7 @@
           "orientation": "auto",
           "reduceOptions": {
             "calcs": [
-              "last"
+              "lastNotNull"
             ],
             "fields": "",
             "values": false
@@ -346,7 +176,7 @@
               },
               {
                 "params": [
-                  "null"
+                  "0"
                 ],
                 "type": "fill"
               }
@@ -354,9 +184,6 @@
             "measurement": "mikutano_stats",
             "orderByTime": "ASC",
             "policy": "default",
-            "query": "SELECT last(\"participants\") FROM \"mikutano_stats\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
-            "queryType": "randomWalk",
-            "rawQuery": false,
             "refId": "A",
             "resultFormat": "time_series",
             "select": [
@@ -378,19 +205,117 @@
         ],
         "timeFrom": null,
         "timeShift": null,
-        "title": "(Not complete)Number of reserved conferences (e-Maombi) ",
-        "transparent": true,
+        "title": "Current Total Participants",
         "type": "stat"
       },
       {
         "datasource": "Docker InfluxDB",
-        "description": "total bytes sent by the video-bridge",
         "fieldConfig": {
           "defaults": {
-            "color": {
-              "fixedColor": "dark-blue",
-              "mode": "fixed"
+            "custom": {},
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 0.5
+                },
+                {
+                  "color": "red",
+                  "value": 0.9
+                }
+              ]
             },
+            "unit": "percentunit"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "mikutano_stats.mean"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "percentunit"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 4,
+          "x": 6,
+          "y": 1
+        },
+        "id": 37,
+        "options": {
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true
+        },
+        "pluginVersion": "7.3.1",
+        "targets": [
+          {
+            "alias": "VideoBridge Stress",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "mikutano_stats",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "queryType": "randomWalk",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "stress_level"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "VideoBridge Stress",
+        "type": "gauge"
+      },
+      {
+        "datasource": "Docker InfluxDB",
+        "fieldConfig": {
+          "defaults": {
             "custom": {},
             "mappings": [],
             "thresholds": {
@@ -401,26 +326,42 @@
                   "value": null
                 }
               ]
-            },
-            "unit": "Kbits"
+            }
           },
-          "overrides": []
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Total Conference Duration"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "dtdurations"
+                },
+                {
+                  "id": "noValue",
+                  "value": "No Data Available"
+                }
+              ]
+            }
+          ]
         },
         "gridPos": {
-          "h": 3,
-          "w": 3,
-          "x": 12,
-          "y": 6
+          "h": 5,
+          "w": 7,
+          "x": 10,
+          "y": 1
         },
-        "id": 61,
+        "id": 20,
         "options": {
           "colorMode": "value",
-          "graphMode": "area",
-          "justifyMode": "auto",
+          "graphMode": "none",
+          "justifyMode": "center",
           "orientation": "auto",
           "reduceOptions": {
             "calcs": [
-              "last"
+              "lastNotNull"
             ],
             "fields": "",
             "values": false
@@ -430,6 +371,7 @@
         "pluginVersion": "7.3.1",
         "targets": [
           {
+            "alias": "Total Conferences Created",
             "groupBy": [
               {
                 "params": [
@@ -447,395 +389,13 @@
             "measurement": "mikutano_stats",
             "orderByTime": "ASC",
             "policy": "default",
-            "queryType": "randomWalk",
             "refId": "A",
             "resultFormat": "time_series",
             "select": [
               [
                 {
                   "params": [
-                    "bit_rate_download"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "last"
-                }
-              ]
-            ],
-            "tags": []
-          }
-        ],
-        "timeFrom": null,
-        "timeShift": null,
-        "title": "Videobridge RX",
-        "transparent": true,
-        "type": "stat"
-      },
-      {
-        "datasource": "Docker InfluxDB",
-        "description": "total bytes sent by the video-bridge",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "fixedColor": "dark-blue",
-              "mode": "fixed"
-            },
-            "custom": {},
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            },
-            "unit": "Kbits"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 3,
-          "w": 3,
-          "x": 15,
-          "y": 6
-        },
-        "id": 64,
-        "options": {
-          "colorMode": "value",
-          "graphMode": "area",
-          "justifyMode": "auto",
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "last"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "textMode": "auto"
-        },
-        "pluginVersion": "7.3.1",
-        "targets": [
-          {
-            "groupBy": [
-              {
-                "params": [
-                  "1m"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "measurement": "mikutano_stats",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "queryType": "randomWalk",
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "bit_rate_download"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "last"
-                }
-              ]
-            ],
-            "tags": []
-          }
-        ],
-        "timeFrom": null,
-        "timeShift": null,
-        "title": "Videobridge RX",
-        "transparent": true,
-        "type": "stat"
-      },
-      {
-        "datasource": "Docker InfluxDB",
-        "description": "total bytes sent by the video-bridge",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "fixedColor": "dark-blue",
-              "mode": "fixed"
-            },
-            "custom": {},
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            },
-            "unit": "Kbits"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 3,
-          "w": 3,
-          "x": 18,
-          "y": 6
-        },
-        "id": 65,
-        "options": {
-          "colorMode": "value",
-          "graphMode": "area",
-          "justifyMode": "auto",
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "last"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "textMode": "auto"
-        },
-        "pluginVersion": "7.3.1",
-        "targets": [
-          {
-            "groupBy": [
-              {
-                "params": [
-                  "1m"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "measurement": "mikutano_stats",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "queryType": "randomWalk",
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "bit_rate_download"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "last"
-                }
-              ]
-            ],
-            "tags": []
-          }
-        ],
-        "timeFrom": null,
-        "timeShift": null,
-        "title": "Maombi TX (not compete)",
-        "transparent": true,
-        "type": "stat"
-      },
-      {
-        "datasource": "Docker InfluxDB",
-        "description": "total bytes sent by the video-bridge",
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "fixedColor": "dark-blue",
-              "mode": "fixed"
-            },
-            "custom": {},
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            },
-            "unit": "Kbits"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 3,
-          "w": 3,
-          "x": 21,
-          "y": 6
-        },
-        "id": 63,
-        "options": {
-          "colorMode": "value",
-          "graphMode": "area",
-          "justifyMode": "auto",
-          "orientation": "auto",
-          "reduceOptions": {
-            "calcs": [
-              "last"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "textMode": "auto"
-        },
-        "pluginVersion": "7.3.1",
-        "targets": [
-          {
-            "groupBy": [
-              {
-                "params": [
-                  "1m"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "measurement": "mikutano_stats",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "queryType": "randomWalk",
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "bit_rate_download"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "last"
-                }
-              ]
-            ],
-            "tags": []
-          }
-        ],
-        "timeFrom": null,
-        "timeShift": null,
-        "title": "Maombi RX (not compete)",
-        "transparent": true,
-        "type": "stat"
-      },
-      {
-        "collapsed": false,
-        "datasource": null,
-        "gridPos": {
-          "h": 1,
-          "w": 24,
-          "x": 0,
-          "y": 9
-        },
-        "id": 67,
-        "panels": [],
-        "title": "Network Overview",
-        "type": "row"
-      },
-      {
-        "aliasColors": {},
-        "bars": false,
-        "dashLength": 10,
-        "dashes": false,
-        "datasource": "Docker InfluxDB",
-        "fieldConfig": {
-          "defaults": {
-            "custom": {},
-            "displayName": "network",
-            "unit": "KBs"
-          },
-          "overrides": []
-        },
-        "fill": 1,
-        "fillGradient": 0,
-        "gridPos": {
-          "h": 8,
-          "w": 12,
-          "x": 0,
-          "y": 10
-        },
-        "hiddenSeries": false,
-        "id": 69,
-        "legend": {
-          "avg": false,
-          "current": false,
-          "max": false,
-          "min": false,
-          "show": true,
-          "total": false,
-          "values": false
-        },
-        "lines": true,
-        "linewidth": 1,
-        "nullPointMode": "null",
-        "options": {
-          "alertThreshold": true
-        },
-        "percentage": false,
-        "pluginVersion": "7.3.1",
-        "pointradius": 2,
-        "points": false,
-        "renderer": "flot",
-        "seriesOverrides": [],
-        "spaceLength": 10,
-        "stack": false,
-        "steppedLine": false,
-        "targets": [
-          {
-            "alias": "bit rate download",
-            "groupBy": [
-              {
-                "params": [
-                  "1m"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "measurement": "mikutano_stats",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "queryType": "randomWalk",
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "bit_rate_download"
+                    "total_conferences_created"
                   ],
                   "type": "field"
                 },
@@ -848,7 +408,7 @@
             "tags": []
           },
           {
-            "alias": "bit rate upload",
+            "alias": "Total Conference Duration",
             "groupBy": [
               {
                 "params": [
@@ -866,336 +426,7 @@
             "measurement": "mikutano_stats",
             "orderByTime": "ASC",
             "policy": "default",
-            "queryType": "randomWalk",
-            "refId": "B",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "bit_rate_upload"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "mean"
-                },
-                {
-                  "params": [
-                    "*-1"
-                  ],
-                  "type": "math"
-                }
-              ]
-            ],
-            "tags": []
-          }
-        ],
-        "thresholds": [],
-        "timeFrom": null,
-        "timeRegions": [],
-        "timeShift": null,
-        "title": "Network Transmission",
-        "tooltip": {
-          "shared": true,
-          "sort": 0,
-          "value_type": "individual"
-        },
-        "type": "graph",
-        "xaxis": {
-          "buckets": null,
-          "mode": "time",
-          "name": null,
-          "show": true,
-          "values": []
-        },
-        "yaxes": [
-          {
-            "format": "KBs",
-            "label": null,
-            "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true
-          },
-          {
-            "format": "short",
-            "label": null,
-            "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true
-          }
-        ],
-        "yaxis": {
-          "align": false,
-          "alignLevel": null
-        }
-      },
-      {
-        "aliasColors": {},
-        "bars": false,
-        "dashLength": 10,
-        "dashes": false,
-        "datasource": "Docker InfluxDB",
-        "fieldConfig": {
-          "defaults": {
-            "custom": {},
-            "displayName": "network",
-            "unit": "KBs"
-          },
-          "overrides": []
-        },
-        "fill": 1,
-        "fillGradient": 0,
-        "gridPos": {
-          "h": 8,
-          "w": 12,
-          "x": 12,
-          "y": 10
-        },
-        "hiddenSeries": false,
-        "id": 70,
-        "legend": {
-          "avg": false,
-          "current": false,
-          "max": false,
-          "min": false,
-          "show": true,
-          "total": false,
-          "values": false
-        },
-        "lines": true,
-        "linewidth": 1,
-        "nullPointMode": "null",
-        "options": {
-          "alertThreshold": true
-        },
-        "percentage": false,
-        "pluginVersion": "7.3.1",
-        "pointradius": 2,
-        "points": false,
-        "renderer": "flot",
-        "seriesOverrides": [],
-        "spaceLength": 10,
-        "stack": false,
-        "steppedLine": false,
-        "targets": [
-          {
-            "alias": "bit rate download2",
-            "groupBy": [
-              {
-                "params": [
-                  "1m"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "measurement": "ping",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "queryType": "randomWalk",
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "average_response_ms"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "mean"
-                }
-              ]
-            ],
-            "tags": [
-              {
-                "key": "host",
-                "operator": "=",
-                "value": "mikutano-main-vm"
-              }
-            ]
-          },
-          {
-            "alias": "bit rate download",
-            "groupBy": [
-              {
-                "params": [
-                  "1m"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "null"
-                ],
-                "type": "fill"
-              }
-            ],
-            "measurement": "ping",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "queryType": "randomWalk",
-            "refId": "B",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "average_response_ms"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "mean"
-                }
-              ]
-            ],
-            "tags": [
-              {
-                "key": "host",
-                "operator": "=",
-                "value": "mikutano-main-vm"
-              }
-            ]
-          }
-        ],
-        "thresholds": [],
-        "timeFrom": null,
-        "timeRegions": [],
-        "timeShift": null,
-        "title": "Ping Response Time",
-        "tooltip": {
-          "shared": true,
-          "sort": 0,
-          "value_type": "individual"
-        },
-        "type": "graph",
-        "xaxis": {
-          "buckets": null,
-          "mode": "time",
-          "name": null,
-          "show": true,
-          "values": []
-        },
-        "yaxes": [
-          {
-            "format": "KBs",
-            "label": null,
-            "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true
-          },
-          {
-            "format": "short",
-            "label": null,
-            "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true
-          }
-        ],
-        "yaxis": {
-          "align": false,
-          "alignLevel": null
-        }
-      },
-      {
-        "collapsed": false,
-        "datasource": null,
-        "gridPos": {
-          "h": 1,
-          "w": 24,
-          "x": 0,
-          "y": 18
-        },
-        "id": 72,
-        "panels": [],
-        "title": "System metrics",
-        "type": "row"
-      },
-      {
-        "aliasColors": {},
-        "bars": false,
-        "dashLength": 10,
-        "dashes": false,
-        "datasource": "Docker InfluxDB",
-        "description": "",
-        "fieldConfig": {
-          "defaults": {
-            "custom": {},
-            "unit": "Bps"
-          },
-          "overrides": []
-        },
-        "fill": 1,
-        "fillGradient": 0,
-        "gridPos": {
-          "h": 8,
-          "w": 8,
-          "x": 0,
-          "y": 19
-        },
-        "hiddenSeries": false,
-        "id": 79,
-        "legend": {
-          "avg": false,
-          "current": false,
-          "max": false,
-          "min": false,
-          "show": true,
-          "total": false,
-          "values": false
-        },
-        "lines": true,
-        "linewidth": 1,
-        "nullPointMode": "null",
-        "options": {
-          "alertThreshold": true
-        },
-        "percentage": false,
-        "pluginVersion": "7.3.1",
-        "pointradius": 2,
-        "points": false,
-        "renderer": "flot",
-        "seriesOverrides": [],
-        "spaceLength": 10,
-        "stack": false,
-        "steppedLine": false,
-        "targets": [
-          {
-            "alias": "reads",
-            "groupBy": [
-              {
-                "params": [
-                  "1m"
-                ],
-                "type": "time"
-              },
-              {
-                "params": [
-                  "linear"
-                ],
-                "type": "fill"
-              }
-            ],
-            "measurement": "diskio",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "query": "SELECT derivative(mean(\"read_bytes\"), 10s) AS \"read\", derivative(mean(\"write_bytes\"), 10s) AS \"write\" FROM \"diskio\" WHERE $timeFilter GROUP BY time(1m) fill(null)",
-            "queryType": "randomWalk",
+            "query": "SELECT \"total_conference_seconds\" FROM \"mikutano_stats\" WHERE $timeFilter",
             "rawQuery": false,
             "refId": "B",
             "resultFormat": "time_series",
@@ -1203,32 +434,20 @@
               [
                 {
                   "params": [
-                    "reads"
+                    "total_conference_seconds"
                   ],
                   "type": "field"
                 },
                 {
                   "params": [],
-                  "type": "last"
-                },
-                {
-                  "params": [
-                    "*-1"
-                  ],
-                  "type": "math"
+                  "type": "mean"
                 }
               ]
             ],
-            "tags": [
-              {
-                "key": "host",
-                "operator": "=",
-                "value": "mikutano-main-vm"
-              }
-            ]
+            "tags": []
           },
           {
-            "alias": "writes",
+            "alias": "Total Participants",
             "groupBy": [
               {
                 "params": [
@@ -1238,24 +457,97 @@
               },
               {
                 "params": [
-                  "linear"
+                  "null"
                 ],
                 "type": "fill"
               }
             ],
-            "measurement": "diskio",
+            "measurement": "mikutano_stats",
             "orderByTime": "ASC",
             "policy": "default",
-            "query": "SELECT derivative(mean(\"read_bytes\"), 10s) AS \"read\", derivative(mean(\"write_bytes\"), 10s) AS \"write\" FROM \"diskio\" WHERE $timeFilter GROUP BY time(1m) fill(null)",
-            "queryType": "randomWalk",
+            "query": "SELECT \"total_conference_seconds\" FROM \"mikutano_stats\" WHERE $timeFilter",
             "rawQuery": false,
+            "refId": "C",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "total_participants"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Conferences Created",
+        "type": "stat"
+      },
+      {
+        "datasource": "Docker InfluxDB",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "decbytes"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 7,
+          "x": 17,
+          "y": 1
+        },
+        "id": 31,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.3.1",
+        "targets": [
+          {
+            "alias": "Incoming",
+            "groupBy": [],
+            "measurement": "mikutano_stats",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "queryType": "randomWalk",
             "refId": "A",
             "resultFormat": "time_series",
             "select": [
               [
                 {
                   "params": [
-                    "writes"
+                    "total_bytes_received"
                   ],
                   "type": "field"
                 },
@@ -1265,212 +557,12 @@
                 }
               ]
             ],
-            "tags": [
-              {
-                "key": "host",
-                "operator": "=",
-                "value": "mikutano-main-vm"
-              }
-            ]
-          }
-        ],
-        "thresholds": [],
-        "timeFrom": null,
-        "timeRegions": [],
-        "timeShift": null,
-        "title": "MY-SQL (I/O) (transactions per second) (not complete)",
-        "tooltip": {
-          "shared": true,
-          "sort": 0,
-          "value_type": "individual"
-        },
-        "type": "graph",
-        "xaxis": {
-          "buckets": null,
-          "mode": "time",
-          "name": null,
-          "show": true,
-          "values": []
-        },
-        "yaxes": [
-          {
-            "format": "Bps",
-            "label": null,
-            "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true
+            "tags": []
           },
           {
-            "format": "short",
-            "label": null,
-            "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true
-          }
-        ],
-        "yaxis": {
-          "align": false,
-          "alignLevel": null
-        }
-      },
-      {
-        "aliasColors": {},
-        "bars": false,
-        "dashLength": 10,
-        "dashes": false,
-        "datasource": "Docker InfluxDB",
-        "description": "",
-        "fieldConfig": {
-          "defaults": {
-            "custom": {},
-            "unit": "percent"
-          },
-          "overrides": []
-        },
-        "fill": 1,
-        "fillGradient": 0,
-        "gridPos": {
-          "h": 8,
-          "w": 8,
-          "x": 8,
-          "y": 19
-        },
-        "hiddenSeries": false,
-        "id": 75,
-        "legend": {
-          "avg": false,
-          "current": false,
-          "max": false,
-          "min": false,
-          "show": true,
-          "total": false,
-          "values": false
-        },
-        "lines": true,
-        "linewidth": 1,
-        "nullPointMode": "null",
-        "options": {
-          "alertThreshold": true
-        },
-        "percentage": false,
-        "pluginVersion": "7.3.1",
-        "pointradius": 2,
-        "points": false,
-        "renderer": "flot",
-        "seriesOverrides": [],
-        "spaceLength": 10,
-        "stack": false,
-        "steppedLine": false,
-        "targets": [
-          {
-            "alias": "$col",
+            "alias": "Outgoing",
             "groupBy": [],
-            "measurement": "cpu",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "queryType": "randomWalk",
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "usage_guest"
-                  ],
-                  "type": "field"
-                }
-              ],
-              [
-                {
-                  "params": [
-                    "usage_idle"
-                  ],
-                  "type": "field"
-                }
-              ],
-              [
-                {
-                  "params": [
-                    "usage_iowait"
-                  ],
-                  "type": "field"
-                }
-              ],
-              [
-                {
-                  "params": [
-                    "usage_irq"
-                  ],
-                  "type": "field"
-                }
-              ],
-              [
-                {
-                  "params": [
-                    "usage_nice"
-                  ],
-                  "type": "field"
-                }
-              ],
-              [
-                {
-                  "params": [
-                    "usage_softirq"
-                  ],
-                  "type": "field"
-                }
-              ],
-              [
-                {
-                  "params": [
-                    "usage_steal"
-                  ],
-                  "type": "field"
-                }
-              ],
-              [
-                {
-                  "params": [
-                    "usage_system"
-                  ],
-                  "type": "field"
-                }
-              ],
-              [
-                {
-                  "params": [
-                    "usage_user"
-                  ],
-                  "type": "field"
-                }
-              ]
-            ],
-            "tags": [
-              {
-                "key": "host",
-                "operator": "=",
-                "value": "mikutano-main-vm"
-              },
-              {
-                "condition": "AND",
-                "key": "cpu",
-                "operator": "=",
-                "value": "cpu-total"
-              }
-            ]
-          },
-          {
-            "groupBy": [
-              {
-                "params": [
-                  "user"
-                ],
-                "type": "tag"
-              }
-            ],
-            "measurement": "procstat",
+            "measurement": "mikutano_stats",
             "orderByTime": "ASC",
             "policy": "default",
             "queryType": "randomWalk",
@@ -1480,282 +572,41 @@
               [
                 {
                   "params": [
-                    "num_threads"
+                    "total_bytes_sent"
                   ],
                   "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
                 }
               ]
             ],
-            "tags": [
-              {
-                "key": "host",
-                "operator": "=",
-                "value": "mikutano-main-vm"
-              }
-            ]
+            "tags": []
           }
         ],
-        "thresholds": [],
         "timeFrom": null,
-        "timeRegions": [],
         "timeShift": null,
-        "title": "CPU Usage (e-Mikutano)",
-        "tooltip": {
-          "shared": true,
-          "sort": 0,
-          "value_type": "individual"
-        },
-        "type": "graph",
-        "xaxis": {
-          "buckets": null,
-          "mode": "time",
-          "name": null,
-          "show": true,
-          "values": []
-        },
-        "yaxes": [
+        "title": "Transfered Data Volume",
+        "transformations": [
           {
-            "format": "percent",
-            "label": null,
-            "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true
-          },
-          {
-            "format": "short",
-            "label": null,
-            "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true
-          }
-        ],
-        "yaxis": {
-          "align": false,
-          "alignLevel": null
-        }
-      },
-      {
-        "aliasColors": {},
-        "bars": false,
-        "dashLength": 10,
-        "dashes": false,
-        "datasource": "Docker InfluxDB",
-        "description": "",
-        "fieldConfig": {
-          "defaults": {
-            "custom": {},
-            "unit": "percent"
-          },
-          "overrides": []
-        },
-        "fill": 1,
-        "fillGradient": 0,
-        "gridPos": {
-          "h": 8,
-          "w": 8,
-          "x": 16,
-          "y": 19
-        },
-        "hiddenSeries": false,
-        "id": 76,
-        "legend": {
-          "avg": false,
-          "current": false,
-          "max": false,
-          "min": false,
-          "show": true,
-          "total": false,
-          "values": false
-        },
-        "lines": true,
-        "linewidth": 1,
-        "nullPointMode": "null",
-        "options": {
-          "alertThreshold": true
-        },
-        "percentage": false,
-        "pluginVersion": "7.3.1",
-        "pointradius": 2,
-        "points": false,
-        "renderer": "flot",
-        "seriesOverrides": [],
-        "spaceLength": 10,
-        "stack": false,
-        "steppedLine": false,
-        "targets": [
-          {
-            "alias": "$col",
-            "groupBy": [],
-            "measurement": "cpu",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "queryType": "randomWalk",
-            "refId": "A",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "usage_guest"
-                  ],
-                  "type": "field"
-                }
-              ],
-              [
-                {
-                  "params": [
-                    "usage_idle"
-                  ],
-                  "type": "field"
-                }
-              ],
-              [
-                {
-                  "params": [
-                    "usage_iowait"
-                  ],
-                  "type": "field"
-                }
-              ],
-              [
-                {
-                  "params": [
-                    "usage_irq"
-                  ],
-                  "type": "field"
-                }
-              ],
-              [
-                {
-                  "params": [
-                    "usage_nice"
-                  ],
-                  "type": "field"
-                }
-              ],
-              [
-                {
-                  "params": [
-                    "usage_softirq"
-                  ],
-                  "type": "field"
-                }
-              ],
-              [
-                {
-                  "params": [
-                    "usage_steal"
-                  ],
-                  "type": "field"
-                }
-              ],
-              [
-                {
-                  "params": [
-                    "usage_system"
-                  ],
-                  "type": "field"
-                }
-              ],
-              [
-                {
-                  "params": [
-                    "usage_user"
-                  ],
-                  "type": "field"
-                }
-              ]
-            ],
-            "tags": [
-              {
-                "key": "host",
-                "operator": "=",
-                "value": "mikutano-main-vm"
+            "id": "calculateField",
+            "options": {
+              "alias": "Total",
+              "binary": {
+                "left": "Imcoming",
+                "operator": "+",
+                "reducer": "sum",
+                "right": "Outgoing"
               },
-              {
-                "condition": "AND",
-                "key": "cpu",
-                "operator": "=",
-                "value": "cpu-total"
+              "mode": "reduceRow",
+              "reduce": {
+                "reducer": "sum"
               }
-            ]
-          },
-          {
-            "groupBy": [
-              {
-                "params": [
-                  "user"
-                ],
-                "type": "tag"
-              }
-            ],
-            "measurement": "procstat",
-            "orderByTime": "ASC",
-            "policy": "default",
-            "queryType": "randomWalk",
-            "refId": "B",
-            "resultFormat": "time_series",
-            "select": [
-              [
-                {
-                  "params": [
-                    "num_threads"
-                  ],
-                  "type": "field"
-                }
-              ]
-            ],
-            "tags": [
-              {
-                "key": "host",
-                "operator": "=",
-                "value": "mikutano-main-vm"
-              }
-            ]
+            }
           }
         ],
-        "thresholds": [],
-        "timeFrom": null,
-        "timeRegions": [],
-        "timeShift": null,
-        "title": "CPU Usage (e-Maombi) (Not Completed)",
-        "tooltip": {
-          "shared": true,
-          "sort": 0,
-          "value_type": "individual"
-        },
-        "type": "graph",
-        "xaxis": {
-          "buckets": null,
-          "mode": "time",
-          "name": null,
-          "show": true,
-          "values": []
-        },
-        "yaxes": [
-          {
-            "format": "percent",
-            "label": null,
-            "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true
-          },
-          {
-            "format": "short",
-            "label": null,
-            "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true
-          }
-        ],
-        "yaxis": {
-          "align": false,
-          "alignLevel": null
-        }
+        "type": "stat"
       },
       {
         "aliasColors": {},
@@ -1763,31 +614,412 @@
         "dashLength": 10,
         "dashes": false,
         "datasource": "Docker InfluxDB",
-        "description": "Memory usage in percentage used",
+        "decimals": 0,
         "fieldConfig": {
           "defaults": {
             "custom": {},
-            "unit": "percent"
+            "links": []
           },
           "overrides": []
         },
         "fill": 1,
-        "fillGradient": 0,
+        "fillGradient": 5,
         "gridPos": {
-          "h": 8,
-          "w": 12,
+          "h": 9,
+          "w": 11,
           "x": 0,
-          "y": 27
+          "y": 6
         },
         "hiddenSeries": false,
-        "id": 78,
+        "id": 9,
         "legend": {
           "alignAsTable": true,
           "avg": true,
           "current": true,
           "max": true,
-          "min": true,
-          "rightSide": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.3.1",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "alias": "participants",
+            "color": "#FF9830"
+          },
+          {
+            "alias": "conferences",
+            "color": "#1F60C4"
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "participants",
+            "groupBy": [
+              {
+                "params": [
+                  "1m"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "mikutano_stats",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "participants"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
+          },
+          {
+            "alias": "conferences",
+            "groupBy": [
+              {
+                "params": [
+                  "1m"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "mikutano_stats",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "conferences"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Participants vs Conferences",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "decimals": 0,
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "decimals": null,
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Docker InfluxDB",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 13,
+          "x": 11,
+          "y": 6
+        },
+        "hiddenSeries": false,
+        "id": 35,
+        "legend": {
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.3.1",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "Videochannels",
+            "groupBy": [
+              {
+                "params": [
+                  "1m"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "mikutano_stats",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "queryType": "randomWalk",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "videochannels"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Current Video Channels",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "collapsed": false,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 15
+        },
+        "id": 40,
+        "panels": [],
+        "title": "VideoBridge and Prosody Overview",
+        "type": "row"
+      },
+      {
+        "alert": {
+          "alertRuleTags": {},
+          "conditions": [
+            {
+              "evaluator": {
+                "params": [
+                  1
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "A",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "avg"
+              },
+              "type": "query"
+            }
+          ],
+          "executionErrorState": "alerting",
+          "for": "5m",
+          "frequency": "1m",
+          "handler": 1,
+          "name": "VideoBridge Stress alert",
+          "noDataState": "no_data",
+          "notifications": []
+        },
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Docker InfluxDB",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 0.5
+                },
+                {
+                  "color": "red",
+                  "value": 0.9
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "mikutano_stats.mean"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "percentunit"
+                }
+              ]
+            }
+          ]
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 11,
+          "w": 12,
+          "x": 0,
+          "y": 16
+        },
+        "hiddenSeries": false,
+        "id": 38,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": true,
+          "min": false,
           "show": true,
           "total": false,
           "values": true
@@ -1809,7 +1041,7 @@
         "steppedLine": false,
         "targets": [
           {
-            "alias": "Mikutano $col",
+            "alias": "VideoBridge Stress",
             "groupBy": [
               {
                 "params": [
@@ -1819,12 +1051,12 @@
               },
               {
                 "params": [
-                  "linear"
+                  "0"
                 ],
                 "type": "fill"
               }
             ],
-            "measurement": "mem",
+            "measurement": "mikutano_stats",
             "orderByTime": "ASC",
             "policy": "default",
             "queryType": "randomWalk",
@@ -1834,50 +1066,20 @@
               [
                 {
                   "params": [
-                    "available_percent"
+                    "stress_level"
                   ],
                   "type": "field"
                 },
                 {
                   "params": [],
                   "type": "mean"
-                },
-                {
-                  "params": [
-                    "Avaliable"
-                  ],
-                  "type": "alias"
-                }
-              ],
-              [
-                {
-                  "params": [
-                    "used_percent"
-                  ],
-                  "type": "field"
-                },
-                {
-                  "params": [],
-                  "type": "mean"
-                },
-                {
-                  "params": [
-                    "Used"
-                  ],
-                  "type": "alias"
                 }
               ]
             ],
-            "tags": [
-              {
-                "key": "host",
-                "operator": "=",
-                "value": "mikutano-main-vm"
-              }
-            ]
+            "tags": []
           },
           {
-            "alias": "Maombi $col",
+            "alias": "",
             "groupBy": [
               {
                 "params": [
@@ -1887,12 +1089,12 @@
               },
               {
                 "params": [
-                  "linear"
+                  "0"
                 ],
                 "type": "fill"
               }
             ],
-            "measurement": "mem",
+            "measurement": "system",
             "orderByTime": "ASC",
             "policy": "default",
             "queryType": "randomWalk",
@@ -1902,7 +1104,7 @@
               [
                 {
                   "params": [
-                    "used_percent"
+                    "load1"
                   ],
                   "type": "field"
                 },
@@ -1912,7 +1114,13 @@
                 },
                 {
                   "params": [
-                    "Used"
+                    " / 100"
+                  ],
+                  "type": "math"
+                },
+                {
+                  "params": [
+                    "load 1"
                   ],
                   "type": "alias"
                 }
@@ -1920,7 +1128,7 @@
               [
                 {
                   "params": [
-                    "available_percent"
+                    "load5"
                   ],
                   "type": "field"
                 },
@@ -1930,26 +1138,58 @@
                 },
                 {
                   "params": [
-                    "Avaliable"
+                    " / 100"
+                  ],
+                  "type": "math"
+                },
+                {
+                  "params": [
+                    "load 5"
+                  ],
+                  "type": "alias"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "load15"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    " / 100"
+                  ],
+                  "type": "math"
+                },
+                {
+                  "params": [
+                    "load 15"
                   ],
                   "type": "alias"
                 }
               ]
             ],
-            "tags": [
-              {
-                "key": "host",
-                "operator": "=",
-                "value": "mikutano-main-vm"
-              }
-            ]
+            "tags": []
           }
         ],
-        "thresholds": [],
+        "thresholds": [
+          {
+            "colorMode": "critical",
+            "fill": true,
+            "line": true,
+            "op": "gt",
+            "value": 1
+          }
+        ],
         "timeFrom": null,
         "timeRegions": [],
         "timeShift": null,
-        "title": "Memory Usage",
+        "title": "VideoBridge Stress vs System load (/100)",
         "tooltip": {
           "shared": true,
           "sort": 0,
@@ -1965,7 +1205,489 @@
         },
         "yaxes": [
           {
-            "format": "percent",
+            "format": "percentunit",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "percentunit",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": false
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Docker InfluxDB",
+        "description": "The number of Java threads that the video bridge is using",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 11,
+          "w": 12,
+          "x": 12,
+          "y": 16
+        },
+        "hiddenSeries": false,
+        "id": 33,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": true,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.3.1",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "Threads",
+            "groupBy": [
+              {
+                "params": [
+                  "1m"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "0"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "mikutano_stats",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "queryType": "randomWalk",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "threads"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Videobridge Threads",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "datasource": "Docker InfluxDB",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "ms"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 3,
+          "x": 0,
+          "y": 27
+        },
+        "id": 17,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.3.1",
+        "targets": [
+          {
+            "alias": "RTT",
+            "groupBy": [
+              {
+                "params": [
+                  "1m"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "none"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "mikutano_stats",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "rtt_aggregate"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "RTT Aggregate",
+        "type": "stat"
+      },
+      {
+        "datasource": "Docker InfluxDB",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "orange",
+                  "value": 80
+                },
+                {
+                  "color": "semi-dark-red",
+                  "value": 100
+                }
+              ]
+            },
+            "unit": "ms"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 3,
+          "x": 3,
+          "y": 27
+        },
+        "id": 23,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.3.1",
+        "targets": [
+          {
+            "alias": "Jitter",
+            "groupBy": [
+              {
+                "params": [
+                  "$interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "none"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "mikutano_stats",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "jitter_aggregate"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Jitter Aggregate",
+        "type": "stat"
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Docker InfluxDB",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "links": [],
+            "unit": "percentunit"
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 7,
+          "w": 8,
+          "x": 6,
+          "y": 27
+        },
+        "hiddenSeries": false,
+        "id": 18,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": true,
+          "min": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.3.1",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "alias": "loss_rate_download",
+            "transform": "negative-Y"
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "loss_rate_download",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "mikutano_stats",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "incoming_loss"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
+          },
+          {
+            "alias": "loss_rate_upload",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "mikutano_stats",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "outgoing_loss"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Loss Rate",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "percentunit",
             "label": null,
             "logBase": 1,
             "max": null,
@@ -1992,7 +1714,7 @@
         "dashLength": 10,
         "dashes": false,
         "datasource": "Docker InfluxDB",
-        "description": "Number of threads spawned by users",
+        "description": "",
         "fieldConfig": {
           "defaults": {
             "custom": {}
@@ -2002,13 +1724,13 @@
         "fill": 1,
         "fillGradient": 0,
         "gridPos": {
-          "h": 8,
-          "w": 12,
-          "x": 12,
+          "h": 7,
+          "w": 10,
+          "x": 14,
           "y": 27
         },
         "hiddenSeries": false,
-        "id": 74,
+        "id": 46,
         "legend": {
           "avg": false,
           "current": false,
@@ -2029,21 +1751,37 @@
         "pointradius": 2,
         "points": false,
         "renderer": "flot",
-        "seriesOverrides": [],
+        "seriesOverrides": [
+          {
+            "alias": "MUCs Configured",
+            "transform": "negative-Y"
+          },
+          {
+            "alias": "MUCs Joined",
+            "transform": "negative-Y"
+          }
+        ],
         "spaceLength": 10,
         "stack": false,
         "steppedLine": false,
         "targets": [
           {
+            "alias": "MUC Clients Configured",
             "groupBy": [
               {
                 "params": [
-                  "user"
+                  "1m"
                 ],
-                "type": "tag"
+                "type": "time"
+              },
+              {
+                "params": [
+                  "0"
+                ],
+                "type": "fill"
               }
             ],
-            "measurement": "procstat",
+            "measurement": "mikutano_stats",
             "orderByTime": "ASC",
             "policy": "default",
             "queryType": "randomWalk",
@@ -2053,30 +1791,35 @@
               [
                 {
                   "params": [
-                    "num_threads"
+                    "muc_clients_configured"
                   ],
                   "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
                 }
               ]
             ],
-            "tags": [
-              {
-                "key": "host",
-                "operator": "=",
-                "value": "mikutano-main-vm"
-              }
-            ]
+            "tags": []
           },
           {
+            "alias": "MUC Clients Connected",
             "groupBy": [
               {
                 "params": [
-                  "user"
+                  "1m"
                 ],
-                "type": "tag"
+                "type": "time"
+              },
+              {
+                "params": [
+                  "0"
+                ],
+                "type": "fill"
               }
             ],
-            "measurement": "procstat",
+            "measurement": "mikutano_stats",
             "orderByTime": "ASC",
             "policy": "default",
             "queryType": "randomWalk",
@@ -2086,26 +1829,100 @@
               [
                 {
                   "params": [
-                    "num_threads"
+                    "muc_clients_connected"
                   ],
                   "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
                 }
               ]
             ],
-            "tags": [
+            "tags": []
+          },
+          {
+            "alias": "MUCs Configured",
+            "groupBy": [
               {
-                "key": "host",
-                "operator": "=",
-                "value": "mikutano-main-vm"
+                "params": [
+                  "1m"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "0"
+                ],
+                "type": "fill"
               }
-            ]
+            ],
+            "measurement": "mikutano_stats",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "queryType": "randomWalk",
+            "refId": "C",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "mucs_configured"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
+          },
+          {
+            "alias": "MUCs Joined",
+            "groupBy": [
+              {
+                "params": [
+                  "1m"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "0"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "mikutano_stats",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "queryType": "randomWalk",
+            "refId": "D",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "mucs_joined"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
           }
         ],
         "thresholds": [],
         "timeFrom": null,
         "timeRegions": [],
         "timeShift": null,
-        "title": "Threads",
+        "title": "Multi User Chatrooms Overview",
         "tooltip": {
           "shared": true,
           "sort": 0,
@@ -2141,9 +1958,520 @@
           "align": false,
           "alignLevel": null
         }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Docker InfluxDB",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "links": []
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 34
+        },
+        "hiddenSeries": false,
+        "id": 7,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": true,
+          "min": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.3.1",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "alias": "bit_rate_download",
+            "transform": "negative-Y"
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "bit_rate_download",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "mikutano_stats",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "bit_rate_download"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
+          },
+          {
+            "alias": "bit_rate_upload",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "mikutano_stats",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "bit_rate_upload"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Bridge Network Bitrate",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "Kbits",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Docker InfluxDB",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "links": []
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 34
+        },
+        "hiddenSeries": false,
+        "id": 19,
+        "interval": "",
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": true,
+          "min": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.3.1",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "alias": "packet_rate_download",
+            "transform": "negative-Y"
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "packet_rate_download",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "mikutano_stats",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "packet_rate_download"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
+          },
+          {
+            "alias": "packet_rate_upload",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "mikutano_stats",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "packet_rate_upload"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "UDP Packet Rate",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "pps",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "collapsed": false,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 42
+        },
+        "id": 44,
+        "panels": [],
+        "title": "Logs ",
+        "type": "row"
+      },
+      {
+        "datasource": "Docker InfluxDB",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 24,
+          "x": 0,
+          "y": 43
+        },
+        "id": 25,
+        "options": {
+          "showLabels": false,
+          "showTime": false,
+          "sortOrder": "Descending",
+          "wrapLogMessage": false
+        },
+        "targets": [
+          {
+            "groupBy": [],
+            "measurement": "nginx_access_log",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "result_code"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Prosody Logs (Not Complete)",
+        "type": "logs"
+      },
+      {
+        "datasource": "Docker InfluxDB",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 24,
+          "x": 0,
+          "y": 47
+        },
+        "id": 47,
+        "options": {
+          "showLabels": false,
+          "showTime": false,
+          "sortOrder": "Descending",
+          "wrapLogMessage": false
+        },
+        "targets": [
+          {
+            "groupBy": [],
+            "measurement": "nginx_access_log",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "result_code"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Jicofo Logs (Not Complete)",
+        "type": "logs"
+      },
+      {
+        "datasource": "Docker InfluxDB",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 24,
+          "x": 0,
+          "y": 51
+        },
+        "id": 48,
+        "options": {
+          "showLabels": false,
+          "showTime": false,
+          "sortOrder": "Descending",
+          "wrapLogMessage": false
+        },
+        "targets": [
+          {
+            "groupBy": [],
+            "measurement": "nginx_access_log",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "result_code"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "JVB Logs (Not Complete)",
+        "type": "logs"
       }
     ],
-    "refresh": "1m",
+    "refresh": "10s",
     "schemaVersion": 26,
     "style": "dark",
     "tags": [],
@@ -2166,21 +2494,10 @@
         "1h",
         "2h",
         "1d"
-      ],
-      "time_options": [
-        "5m",
-        "15m",
-        "1h",
-        "6h",
-        "12h",
-        "24h",
-        "2d",
-        "7d",
-        "30d"
       ]
     },
     "timezone": "",
-    "title": "e-Mikutano Overview",
-    "uid": "W-ugaG0Gk",
-    "version": 12
+    "title": "e-Mikutano VideoBridge Overview",
+    "uid": "LXPj3M0Gz",
+    "version": 26
   }
